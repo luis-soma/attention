@@ -8,7 +8,7 @@ import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { ATTENTION_WORDS, clamp } from './decide.mjs'
 
-export const home = (env = process.env) => env.RIGHT_LEVEL_HOME || join(homedir(), '.right-level')
+export const home = (env = process.env) => env.ATTENTION_HOME || join(homedir(), '.attention-level')
 
 const CALL_APPS = {
   'zoom.us': 'Zoom',
@@ -90,7 +90,7 @@ export function sessionBias (sessionId, correction, env = process.env, now = Dat
 
 // Any local service can answer GET <url>/moment with { attention: 0..1, others?: bool, reasons?: [string] }.
 export async function readEngine (env = process.env) {
-  const url = env.RIGHT_LEVEL_ENGINE
+  const url = env.ATTENTION_ENGINE
   if (!url) return null
   try {
     const r = await fetch(url.replace(/\/$/, '') + '/moment', { signal: AbortSignal.timeout(250) })
@@ -111,7 +111,7 @@ function run (cmd, args, ms = 300) {
 
 // Front-to-back list of visible apps, without any permission prompt.
 export async function readMac ({ env = process.env, platform = process.platform } = {}) {
-  if (platform !== 'darwin' || env.RIGHT_LEVEL_NO_DEVICE) return {}
+  if (platform !== 'darwin' || env.ATTENTION_NO_DEVICE) return {}
   const out = await run('lsappinfo', ['visibleProcessList'])
   const visible = [...out.matchAll(/"([^"]+)"-ASN/g)].map(m => m[1])
   const call = visible.map(n => CALL_APPS[n]).find(Boolean)
@@ -124,7 +124,7 @@ export async function readMoment ({ prompt = '', sessionId = null, env = process
   const reasons = []
   const p = readPrompt(prompt)
   const state = readState(env, now)
-  if (state?.off || env.RIGHT_LEVEL_OFF) return { off: true }
+  if (state?.off || env.ATTENTION_OFF) return { off: true }
 
   let attention = 0.55
   let others = false

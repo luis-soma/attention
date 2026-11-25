@@ -1,5 +1,5 @@
 {
-  "description": "Right Level: the levels once per session, one moment line per message.",
+  "description": "Attention: the levels once per session, one moment line per message.",
   "hooks": {
     "SessionStart": [
       {

@@ -8,7 +8,7 @@ import { decide } from '../plugin/lib/decide.mjs'
 import { readPrompt, readMoment, writeState } from '../plugin/lib/moment.mjs'
 import { momentLine } from '../plugin/lib/context.mjs'
 
-const env = () => ({ RIGHT_LEVEL_HOME: mkdtempSync(join(tmpdir(), 'rl-')), RIGHT_LEVEL_NO_DEVICE: '1' })
+const env = () => ({ ATTENTION_HOME: mkdtempSync(join(tmpdir(), 'rl-')), ATTENTION_NO_DEVICE: '1' })
 const hook = join(import.meta.dirname, '../plugin/scripts/hook.mjs')
 
 test('value sets how far, attention caps it, the lower one wins', () => {
@@ -81,7 +81,7 @@ test('off means silent', async () => {
 
 test('moment line names the cap and the reason', async () => {
   const line = momentLine(await readMoment({ prompt: 'port?', env: env(), mac: {} }))
-  assert.match(line, /^<right-level>Moment: Busy \(0\.30\): very short message\. Cap: Explain \(one step above Show, because they asked\)\./)
+  assert.match(line, /^<attention>Moment: Busy \(0\.30\): very short message\. Cap: Explain \(one step above Show, because they asked\)\./)
 })
 
 test('the hook speaks the hook protocol', () => {

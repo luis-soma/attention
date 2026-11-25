@@ -1,5 +1,5 @@
 ---
-name: right-level
+name: attention
 description: Use for every reply in this conversation. Sets how much to say and in what form (Indicate, Show, Explain or Elaborate) from the attention the person has right now, and handles one-word corrections like "more" or "less".
 ---
 

@@ -1,10 +1,10 @@
-# Right Level
+# Attention
 
 Agents that reply at the right level for the attention you have right now.
 
-AI agents answer almost every moment the same way: a paragraph. Not because a paragraph fits every moment, but because language is cheap to produce. More and more agents will ask for our attention. Right Level is a small layer that lets them respect it.
+AI agents answer almost every moment the same way: a paragraph. Not because a paragraph fits every moment, but because language is cheap to produce. More and more agents will ask for our attention. This plugin is a small layer that lets them respect it.
 
-It works with **Claude Code**, **Claude** (chat) and **Codex**. It does not need its own model. The agent still writes the words. Right Level decides how far it should go.
+It works with **Claude Code**, **Claude** (chat) and **Codex**. It does not need its own model. The agent still writes the words. The plugin decides how far it should go.
 
 Part of my Master of Design thesis at UC Berkeley, *Worth the Attention*, on how personal agents can decide how much to say, when and in what form.
 
@@ -33,18 +33,18 @@ Four levels with fixed meanings. Adaptation changes which level is chosen, never
 ### Claude Code
 
 ```
-/plugin marketplace add luis-soma/right-level
-/plugin install right-level@right-level
+/plugin marketplace add luis-soma/attention
+/plugin install attention@luis-soma
 ```
 
 Set how much attention you have, or leave it on auto:
 
 ```
-/right-level:attention busy            absorbed, busy, open or free
-/right-level:attention busy --for 90m  default is 3 hours
-/right-level:attention open --others   others can see your screen
-/right-level:attention auto            back to reading the moment
-/right-level:attention off
+/attention:set busy            absorbed, busy, open or free
+/attention:set busy --for 90m  default is 3 hours
+/attention:set open --others   others can see your screen
+/attention:set auto            back to reading the moment
+/attention:set off
 ```
 
 ### Claude (chat)
@@ -53,7 +53,7 @@ Claude chat has no hooks, so it runs on the levels alone and reads the moment fr
 
 - **Everywhere:** paste [`chat/preferences.md`](chat/preferences.md) into Settings, Profile, personal preferences.
 - **One project:** paste it into the project's instructions.
-- **As a skill:** zip [`chat/right-level`](chat/right-level) and upload it under Settings, Capabilities, Skills.
+- **As a skill:** zip [`chat/attention`](chat/attention) and upload it under Settings, Capabilities, Skills.
 
 ### Codex
 
@@ -62,15 +62,15 @@ Claude chat has no hooks, so it runs on the levels alone and reads the moment fr
 **Codex app:** the [`plugin`](plugin) folder is also a Codex plugin (`plugin.json`, `hooks/codex.json`). Codex only runs plugin hooks for plugins installed manually in the desktop app:
 
 ```
-codex plugin marketplace add luis-soma/right-level
+codex plugin marketplace add luis-soma/attention
 ```
 
-Then install Right Level from the Plugins Directory in the app and trust its hooks.
+Then install Attention from the Plugins Directory in the app and trust its hooks.
 
 To set your attention for Codex, run the same command from a terminal:
 
 ```
-node /path/to/right-level/plugin/scripts/attention.mjs busy
+node /path/to/attention/plugin/scripts/attention.mjs busy
 ```
 
 ## How it reads the moment
@@ -78,7 +78,7 @@ node /path/to/right-level/plugin/scripts/attention.mjs busy
 Strongest first:
 
 1. **What you set** with the attention command. It holds until it expires.
-2. **Your own engine**, if you have one. Set `RIGHT_LEVEL_ENGINE=http://localhost:4747` and answer `GET /moment` with `{ "attention": 0.0-1.0, "others": false, "reasons": ["in a lecture"] }`. Anything that knows your situation can plug in here: a calendar, a wearable, a model.
+2. **Your own engine**, if you have one. Set `ATTENTION_ENGINE=http://localhost:4747` and answer `GET /moment` with `{ "attention": 0.0-1.0, "others": false, "reasons": ["in a lecture"] }`. Anything that knows your situation can plug in here: a calendar, a wearable, a model.
 3. **Your Mac.** A call app in front (Zoom, Teams, FaceTime, Webex) lowers attention. No permissions needed.
 4. **How you ask.** A two-word message asks for a short answer. A long careful message gives room. Pasted logs and code count as neutral.
 
@@ -88,7 +88,7 @@ Each message then carries one short line for the model, such as:
 Moment: Busy (0.30): very short message. Cap: Explain (one step above Show, because they asked).
 ```
 
-The model never mentions it. Nothing leaves your machine except that line, sent to the agent you already use. State lives in `~/.right-level`.
+The model never mentions it. Nothing leaves your machine except that line, sent to the agent you already use. State lives in `~/.attention-level`.
 
 ## Limits
 
