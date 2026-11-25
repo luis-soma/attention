@@ -1,0 +1,13 @@
+{
+  "name": "right-level",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agents that reply at the right level for the attention you have right now.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build:chat": "node tools/build-chat.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

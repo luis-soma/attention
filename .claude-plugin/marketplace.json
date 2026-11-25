@@ -1,0 +1,12 @@
+{
+  "name": "right-level",
+  "description": "Agents that reply at the right level for your attention.",
+  "owner": { "name": "Luis Somasundaram", "url": "https://luissoma.com" },
+  "plugins": [
+    {
+      "name": "right-level",
+      "source": "./plugin",
+      "description": "Replies at the right level for the attention you have right now. One word to correct it."
+    }
+  ]
+}

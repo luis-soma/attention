@@ -1,0 +1,11 @@
+{
+  "name": "right-level",
+  "displayName": "Right Level",
+  "version": "0.1.0",
+  "description": "Replies at the right level for the attention you have right now: Indicate, Show, Explain or Elaborate. One word to correct it.",
+  "author": { "name": "Luis Somasundaram", "url": "https://luissoma.com" },
+  "homepage": "https://github.com/luis-soma/right-level",
+  "repository": "https://github.com/luis-soma/right-level",
+  "license": "MIT",
+  "keywords": ["attention", "hci", "communication", "levels"]
+}

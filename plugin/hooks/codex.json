@@ -1,0 +1,20 @@
+{
+  "description": "Right Level: the levels once per session, one moment line per message.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          { "type": "command", "command": "node \"${PLUGIN_ROOT}/scripts/hook.mjs\" SessionStart", "timeout": 5 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"${PLUGIN_ROOT}/scripts/hook.mjs\" UserPromptSubmit", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}

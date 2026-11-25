@@ -1,0 +1,20 @@
+{
+  "description": "Right Level for the Codex CLI. Copy into ~/.codex/hooks.json and replace /path/to/right-level with where you cloned the repo.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          { "type": "command", "command": "node /path/to/right-level/plugin/scripts/hook.mjs SessionStart", "timeout": 5 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node /path/to/right-level/plugin/scripts/hook.mjs UserPromptSubmit", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}

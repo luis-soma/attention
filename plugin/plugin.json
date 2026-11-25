@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "right-level",
+  "version": "0.1.0",
+  "description": "Replies at the right level for the attention you have right now: Indicate, Show, Explain or Elaborate. One word to correct it.",
+  "author": { "name": "Luis Somasundaram", "url": "https://luissoma.com" },
+  "homepage": "https://github.com/luis-soma/right-level",
+  "repository": "https://github.com/luis-soma/right-level",
+  "license": "MIT",
+  "keywords": ["attention", "hci", "communication", "levels"],
+  "extensions": {
+    "com.openai": {
+      "hooks": "./hooks/codex.json",
+      "interface": {
+        "displayName": "Right Level",
+        "shortDescription": "Replies at the right level for your attention",
+        "category": "Productivity"
+      }
+    }
+  }
+}
